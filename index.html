@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Document</title>
+    <style>
+        /* Exemplo de estilo para a mudança de cor */
+        .cor-trocada {
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="titulo">Bem-vindo(a)</h1>
+    <!-- Aqui o texto que você colocou dentro do <p> é só texto, não vai executar -->
+    <!-- Vamos trocar o texto do título via JavaScript -->
+    <p id="texto-exemplo">Texto inicial</p>
+
+    <p id="hora"></p>
+    <p id="data"></p>
+
+    <button onclick="trocar()">Mudar Cor</button>
+
+
+
+    <script>
+        // Função para trocar o texto do parágrafo
+        document.getElementById("texto-exemplo").innerText = "Texto novo";
+        <p id="texto-exemplo">Texto inicial</p>
+
+        // Função para mudar a cor do título
+        function trocar() {
+            const titulo = document.getElementById("titulo");
+            // Alternar classe para mudar cor
+            titulo.classList.toggle("cor-trocada");
+        }
+
+        // Função para mostrar a hora atual
+        function mostrarHora() {
+            const agora = new Date();
+            const hora = agora.toLocaleTimeString();
+            document.getElementById("hora").innerText = "Hora atual: " + hora;
+        }
+
+        // Função para mostrar a data atual
+        function mostrarData() {
+            const hoje = new Date();
+            const dataFormatada = hoje.toLocaleDateString();
+            document.getElementById("data").innerText = "Data atual: " + dataFormatada;
+        }
+
+        // Atualizar hora e data ao carregar a página
+        mostrarHora();
+        mostrarData();
+
+        // Atualizar a hora a cada segundo
+        setInterval(mostrarHora, 1000);
+    </script>
+</body>
+</html>
+Principais correções e dicas:
+
+O trecho <p>document.getElementById("").innerText = "Texto novo"</p> é só um texto, não código executado. O JavaScript precisa estar dentro da tag <script> ou em arquivos .js.
+

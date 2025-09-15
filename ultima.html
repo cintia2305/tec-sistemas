@@ -7,7 +7,9 @@
 </head>
 <body>
     <h1 id="titulo">Bem-vindo(a)</h1>
-    <p>Clique aqui para mudar a cor da página de acordo com o horário</p>
+    <p id="frase">Meu Espaço</p>
+    <p id="hora"></p>
+    <p id="data"></p>
     <button onclick="trocar()">Mudar Cor</button>
     
     <style>
@@ -41,7 +43,12 @@
 
     <script>
         function trocar() {
-            const hora = new Date().getHours();  // Corrigido para "Date" com D maiúsculo
+            const agora = new Date();  // Corrigido para "Date" com D maiúsculo
+            const hora = agora.getHours();
+            const minutos = agora.getMinutes().toString().padStart(2, "0");
+            const opcoes = { weekday: 'long', year: 'numeric', month: 'long', day:'numeric'};
+            const dataFormatada = agora.toLocaleDateString("pt-BR", opcoes)
+
             let cor;
             let mensagem;
             
@@ -63,7 +70,12 @@
             
             document.body.style.backgroundColor = cor;
             document.getElementById("titulo").innerHTML = mensagem;
+            document.getElementById("frase").innerHTML ="";
+            document.getElementById("hora").innerHTML= hora +":"+ minutos;
+            document.getElementById("data").innerHTML=" data" + dataFormatada; 
+
         }
     </script>
 </body>
 </html>
+
