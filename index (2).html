@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Novo dia></title>
+    
+    <!-- Manisfest PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#000000">
+
+     <!-- CSS embutido -->
+
+    <style>
+
+
+    body {
+        transition: background-color 1s;
+        font-family: Arial, sans-serif;
+        color: rgb(7, 7, 7);
+        text-align: center;
+        padding-top: 70px;
+    }
+      #container 
+     { background-color: blue(221, 219,219, 0.8);
+        padding: 20px;
+        max-width: 400px;
+        width: 100%;
+        border-radius: 10px;
+        text-align: center;
+     @media (max-width: 480px)
+      h1 { font-size: 22px;}
+    }
+    }
+    @media (max-width: 480px) {
+      h1 { font-size: 22px; }
+      p { font-size: 14px; }
+      #container { width: 70%; }
+    }
+   
+    
+</style>
+</head>
+<body>
+    <h1 id="titulo"></h1>
+    <p id="hora"></p>
+    <p id="data"></p>
+    <p id="frase"></p>
+    <p id="diatipo"></p>
+    <script>
+        
+        function trocar() {
+            const agora = new Date();  // Corrigido para "Date" com D maiúsculo
+            const hora = agora.getHours();
+            const minutos = agora.getMinutes().toString().padStart(2, "0");
+            const opcoes = { weekday: 'long', year: 'numeric', month: 'long', day:'numeric'};
+            const dataFormatada = agora.toLocaleDateString("pt-BR", opcoes)
+            const segundos = agora.getSeconds().toString().padStart(2, "0");
+            const diaSemana = agora.getDay();
+
+            if (diaSemana === 0 || diaSemana === 6) {
+
+                tipodia = [" Hoje é fin de semana! Ebaaa Piscinada."];
+            }
+        
+            else { tipodia = [" Hoje é fim de semana! Morgar no sófa"];
+          }
+
+            let cor;
+            let mensagem;
+            
+            if (hora >= 6 && hora < 12) {
+                cor = "#FFD700"; // Dourado manhã (background)
+                mensagem = "Bom dia! ☀️";
+                frases = [" Acorde  com determinação." , "Lindo dia."];
+            }
+            else if (hora >= 12 && hora < 18) {
+                cor = "#FF8C00"; // Laranja tarde (background)
+                mensagem = "Boa tarde! 😎";
+                frases = [" Curta  com determinação." , "Grande dia."];
+            }
+            else if (hora >= 18 && hora < 23) {
+                cor = "#1E90FF"; // Crepúsculo (background)
+                mensagem = "Boa noite! 🌕";
+                frases = [" Curta o por do Sol." , "Grande dia."];
+            } else {
+                cor = "#2F4F4F"; // Cinza escuro madrugada (background)
+                mensagem = "Hora de descansar! 🌜";
+                frases = [" Curta  as Estrelas.", "Final do dia."];
+            }
+            
+            
+            document.body.style.backgroundColor = cor;
+            document.getElementById("titulo").innerHTML = mensagem;
+            document.getElementById("hora").innerHTML= hora +":"+ minutos +":"+ segundos;
+            document.getElementById("data").innerHTML= dataFormatada; 
+            document.getElementById("diatipo").innerHTML = tipodia;
+         }
+         let frases = [];
+            function trocarFrases() {
+            if (frases.length > 0) {
+            const fraseAleatoria = frases[Math.floor(Math.random() * frases.length)]
+            document.getElementById("frase").innerHTML = fraseAleatoria;
+            }
+        }
+         trocar();
+          setInterval(trocar, 1000);
+          trocarFrases();
+          setInterval(trocarFrases, 2000);
+    </script>
+</body>
+</html>
+
