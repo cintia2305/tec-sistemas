@@ -106,6 +106,12 @@
           setInterval(trocar, 1000);
           trocarFrases();
           setInterval(trocarFrases, 2000);
+        
+        if("ServiceWorker" in navigator){
+    navigator.ServiceWorker.register("service-worker.json")
+        .then(() => console.log("Service Worker regidtrado"))
+        .catch(err => console.log("Erro no SW", err))
+}
     </script>
 </body>
 </html>
